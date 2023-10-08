@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Cast } from "./cast";
 import "../App.css";
+import { Details } from "./details";
 export const MovieResult = ({ selectedGenres }) => {
   // Create a new array where selectedGenres are joined with "%"
   const formattedGenres = selectedGenres.join("%2C");
@@ -51,32 +53,14 @@ export const MovieResult = ({ selectedGenres }) => {
 
   return (
     <div>
-      <button onClick={getMovie}>Click</button>
+      <button onClick={getMovie}>Find me a movie</button>
       {loading ? (
-        <p>Loading...</p>
+        <p>Pick one or more genres above to find a movie!</p>
       ) : (
         <div className="fade-in">
-          <h1>{results.original_title}</h1>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${results.poster_path}`}
-            alt="movie poster"
-          />
-          <p>{results.overview}</p>
-          <ul>
-            {cast.map((member) => (
-              <div className="cast-box" key={member.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${member.profile_path}`}
-                  alt="(actor portrait unavailable)"
-                  className="actor-portrait"
-                />
-                <p>
-                  {member.name} as {member.character}
-                </p>
-              </div>
-            ))}
-          </ul>
-          <p>Directed by {director.name}</p>
+          <Details props={results} />
+          <Cast props={cast} />
+          {/* <p>Directed by {director.name}</p> */}
         </div>
       )}
     </div>

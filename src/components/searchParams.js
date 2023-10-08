@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MovieResult } from "./movieResult";
+require("dotenv").config();
 
 export const SearchParams = () => {
   const [genres, setGenres] = useState([]);
@@ -11,8 +12,7 @@ export const SearchParams = () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZTU1OTI1NzA1ZDU4OTJhYmEyYWRlYzNlZWNiNTU1NiIsInN1YiI6IjY1MjE3ZjgzOTVjMGFmMDEzYjE3MmY2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8qgzeG675u2Ofgr3OuXt7YNIUnZzvLG8iunBe44B6oo",
+        Authorization: process.env.API,
       },
     };
 
@@ -48,11 +48,11 @@ export const SearchParams = () => {
 
   return (
     <div>
-      <h1>Fetch API Example</h1>
+      <h1>Help Me Pick a Movie</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className="genre-list">
           {genres.length > 0 ? (
             genres.map((item) => (
               <div className="genre-box" key={item.id}>

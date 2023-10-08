@@ -1,0 +1,17 @@
+.actor-portrait {
+    width: 50%;
+    height: auto;
+    margin-right: 10px;
+}
+
+
+
+.cast-ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.cast-ul li {
+    margin-right: 10px;
+}
