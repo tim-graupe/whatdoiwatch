@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Cast } from "./cast";
 import "../App.css";
 import { Details } from "./details";
+const config = require("./config");
+const apiKey = config.apiKey;
+
 export const MovieResult = ({ selectedGenres }) => {
-  // Create a new array where selectedGenres are joined with "%"
   const formattedGenres = selectedGenres.join("%2C");
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
@@ -16,8 +18,7 @@ export const MovieResult = ({ selectedGenres }) => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZTU1OTI1NzA1ZDU4OTJhYmEyYWRlYzNlZWNiNTU1NiIsInN1YiI6IjY1MjE3ZjgzOTVjMGFmMDEzYjE3MmY2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8qgzeG675u2Ofgr3OuXt7YNIUnZzvLG8iunBe44B6oo",
+        Authorization: apiKey,
       },
     };
     fetch(

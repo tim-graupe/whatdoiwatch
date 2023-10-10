@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MovieResult } from "./movieResult";
-require("dotenv").config();
+const config = require("./config");
+const apiKey = config.apiKey;
 
 export const SearchParams = () => {
   const [genres, setGenres] = useState([]);
@@ -12,7 +13,7 @@ export const SearchParams = () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: process.env.API,
+        Authorization: apiKey,
       },
     };
 
